@@ -1,15 +1,14 @@
-import { Button } from "./components/ui/button"
-
+import Todo from "./pages/Todo";
 
 function App() {
-  
-
+  console.error("error");
+  console.log("error");
   return (
     <>
-      <h1>Todo-Redux-shadcn</h1>
-      <Button>Click</Button>
+      <Todo></Todo>
+      <h2>i am displaying</h2>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
