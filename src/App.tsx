@@ -1,8 +1,8 @@
 import Todo from "./pages/Todo";
 
 function App() {
-  console.error("error");
-  console.log("error");
+  // console.error("error");
+  // console.log("error");
   return (
     <>
       <Todo></Todo>

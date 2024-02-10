@@ -5,22 +5,32 @@ import {
   DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { useAppDispatch } from "@/redux/hook";
+import { addTodo } from "@/redux/features/TodoSlice";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useAppDispatch();
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log({ task, description });
-    // console.log("clicked")
+    const mathString = Math.random().toString(36).slice(2, 10);
+    const taskDetails = {
+      id: mathString,
+      title: task,
+      description: description,
+    };
+    dispatch(addTodo(taskDetails));
+    // console.log(taskDetails)
   };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
