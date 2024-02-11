@@ -11,7 +11,7 @@ interface ITodoCardProps {
   isCompleted?: boolean;
 }
 
-const TodoCard = ({ title, description, id, isCompleted }: ITodoCardProps) => {
+const TodoCard = ({ title, description, id, isCompleted,priority }: ITodoCardProps) => {
   const dispatch = useAppDispatch();
 
   const toggleState=()=>{
@@ -22,7 +22,7 @@ const TodoCard = ({ title, description, id, isCompleted }: ITodoCardProps) => {
     <div className="bg-white flex justify-between items-center rounded-md p-2 border-2 my-2 ">
       <input onClick={toggleState} type="checkbox" name="complete" id="complete" />
       <p className="font-semibold">{title}</p>
-      {/* <p>Time</p> */}
+      <p>{priority}</p>
       <div className="text-2xl font-semibold">
         {isCompleted ? (
           <div className="text-green-600">

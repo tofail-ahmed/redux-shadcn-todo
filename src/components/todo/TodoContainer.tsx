@@ -3,10 +3,19 @@ import { useAppSelector } from "@/redux/hook";
 import AddTodoModal from "./AddTodoModal";
 import TodoCard from "./TodoCard";
 import TodoFilter from "./TodoFilter";
+import { useGetTodosQuery } from "@/redux/api/Api";
 
 const TodoContainer = () => {
-  const { todos } = useAppSelector((state) => state.todos);
+  // const { todos } = useAppSelector((state) => state.todos);\
 
+  const {data:todos,isLoading,isError} =useGetTodosQuery(undefined)
+if(isLoading){
+  return <p>Loading...</p>
+}
+if(isError){
+  return <p>error...</p>
+}
+console.log(todos)
   return (
     <div>
       <div className="flex justify-between mb-4">
@@ -19,7 +28,7 @@ const TodoContainer = () => {
             {/* <p className="font-bold p-5 text-3xl">There is no pending task</p> */}
             
             {
-              todos.map((todo)=>(
+              todos.data.map((todo)=>(
                 <TodoCard {...todo}></TodoCard>
               ))
             }

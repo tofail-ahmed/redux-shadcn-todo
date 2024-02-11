@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Todo></Todo>
-      <h2>i am displaying</h2>
+      {/* <h2>i am displaying</h2> */}
     </>
   );
 }
