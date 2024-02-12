@@ -3,8 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadio
 
 
 const TodoFilter = ({priority,setPriority}) => {
-      // const [position, setPosition] = useState("")
-      // console.log(position)
+      
 
   return (
       <DropdownMenu>

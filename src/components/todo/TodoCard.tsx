@@ -43,6 +43,7 @@ const [data,{isLoading}]=usePutTodoMutation()
         type="checkbox"
         name="complete"
         id="complete"
+        defaultChecked={isCompleted}
       />
       <p className="font-semibold flex-[1]">{title}</p>
       <div className="flex items-center justify-center gap-2 flex-1">
