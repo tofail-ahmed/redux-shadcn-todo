@@ -12,7 +12,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 // import { useAppDispatch } from "@/redux/hook";
-import { addTodo } from "@/redux/features/TodoSlice";
+// import { addTodo } from "@/redux/features/TodoSlice";
 import { useAddTodoMutation } from "@/redux/api/Api";
 import { Select, SelectContent, SelectGroup, SelectLabel, SelectTrigger, SelectValue,SelectItem } from "../ui/select";
 
@@ -24,7 +24,7 @@ const AddTodoModal = () => {
   // const dispatch = useAppDispatch();
   const [addTodo, { data, isLoading, isError, isSuccess }] =
     useAddTodoMutation();
-  // console.log(data, isError, isSuccess, isLoading);
+  console.log(data, isError, isSuccess, isLoading);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // const mathString = Math.random().toString(36).slice(2, 10);
