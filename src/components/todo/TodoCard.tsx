@@ -9,6 +9,7 @@ interface ITodoCardProps {
   title: string;
   description: string;
   isCompleted?: boolean;
+  priority:string;
 }
 
 const TodoCard = ({ title, description, id, isCompleted,priority }: ITodoCardProps) => {
@@ -20,10 +21,19 @@ const TodoCard = ({ title, description, id, isCompleted,priority }: ITodoCardPro
   }
   return (
     <div className="bg-white flex justify-between items-center rounded-md p-2 border-2 my-2 ">
-      <input onClick={toggleState} type="checkbox" name="complete" id="complete" />
-      <p className="font-semibold">{title}</p>
-      <p>{priority}</p>
-      <div className="text-2xl font-semibold">
+      <input className="mr-4" onClick={toggleState} type="checkbox" name="complete" id="complete" />
+      <p className="font-semibold flex-[1]">{title}</p>
+      <div className="flex items-center justify-center gap-2 flex-1">
+      <div className={`size-2 rounded-full 
+      ${priority=="high"?"bg-red-600":null}
+      ${priority=="medium"?"bg-blue-600":null}
+      ${priority=="low"?"bg-green-600":null}
+       `}>
+
+</div>
+<p className="">{priority}</p>
+      </div>
+      <div  className="text-2xl font-semibold flex-1">
         {isCompleted ? (
           <div className="text-green-600">
             <MdCloudDone />
@@ -34,8 +44,8 @@ const TodoCard = ({ title, description, id, isCompleted,priority }: ITodoCardPro
           </div>
         )}
       </div>
-      <div></div>
-      <p>{description}</p>
+      
+      <p className="flex-[2]">{description}</p>
       <div className="space-x-5">
         <Button
           onClick={() => dispatch(delTodo(id))}
