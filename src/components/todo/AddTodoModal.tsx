@@ -11,26 +11,36 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useAppDispatch } from "@/redux/hook";
+// import { useAppDispatch } from "@/redux/hook";
 import { addTodo } from "@/redux/features/TodoSlice";
+import { useAddTodoMutation } from "@/redux/api/Api";
+import { Select, SelectContent, SelectGroup, SelectLabel, SelectTrigger, SelectValue,SelectItem } from "../ui/select";
 
 const AddTodoModal = () => {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const dispatch = useAppDispatch();
-
+  const [priority, setPriority] = useState("");
+  //!for local----
+  // const dispatch = useAppDispatch();
+  const [addTodo, { data, isLoading, isError, isSuccess }] =
+    useAddTodoMutation();
+  // console.log(data, isError, isSuccess, isLoading);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const mathString = Math.random().toString(36).slice(2, 10);
+    // const mathString = Math.random().toString(36).slice(2, 10);
     const taskDetails = {
-      id: mathString,
       title: task,
-      description: description,
+      isCompleted:false,
+      description,
+      priority,
     };
-    dispatch(addTodo(taskDetails));
+    //* for server--
+    addTodo(taskDetails);
+    //! for local----
+    // dispatch(addTodo(taskDetails));
     // console.log(taskDetails)
+    console.log(taskDetails)
   };
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -66,6 +76,25 @@ const AddTodoModal = () => {
                 id="description"
                 className="col-span-3"
               />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="description" className="text-right">
+                Select Priority
+              </Label>
+              <Select onValueChange={(value:string)=>setPriority(value)}>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select any one" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Priority</SelectLabel>
+          <SelectItem value="high">High</SelectItem>
+          <SelectItem value="medium">Medium</SelectItem>
+          <SelectItem value="low">Low</SelectItem>
+          
+        </SelectGroup>
+      </SelectContent>
+    </Select>
             </div>
           </div>
           <div className="flex justify-end">

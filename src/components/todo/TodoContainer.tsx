@@ -5,6 +5,7 @@ import TodoFilter from "./TodoFilter";
 import { useGetTodosQuery } from "@/redux/api/Api";
 
 const TodoContainer = () => {
+  //*for local
   // const { todos } = useAppSelector((state) => state.todos);\
 
   const {data:todos,isLoading,isError} =useGetTodosQuery(undefined)
@@ -14,7 +15,7 @@ if(isLoading){
 if(isError){
   return <p>error...</p>
 }
-console.log(todos)
+// console.log(todos)
   return (
     <div>
       <div className="flex justify-between mb-4">
